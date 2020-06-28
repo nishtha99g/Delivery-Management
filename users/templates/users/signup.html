@@ -1,0 +1,51 @@
+{% extends "shop/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% block title %}
+  The Shoppee | SignUp
+{% endblock %}
+
+{% block content %}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-15 p-b-20">
+            <form class="login100-form validate-form" method="POST">
+                {% csrf_token %}
+                <span class="login100-form-title p-b-35">
+                    SignUp
+                </span>
+                {% for field in form %}
+                <div class="wrap-input100 validate-input m-t-35 m-b-35" data-validate = "Enter {{ field.label }}">
+                    {% render_field field class="input100 has-val" %}
+                    <span class="focus-input100" data-placeholder="{{ field.label }}"></span>
+                </div>
+                {% if field.errors %}
+                <span class="txt2 login-more p-t-1 ">
+                    {{ field.errors }}
+                </span>
+                {% endif %} 
+                {% endfor %}
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit">
+                        SignUp
+                    </button>
+                </div>
+            </form>
+            <ul class="login-more p-t-30">
+                <li class="m-b-8">
+                    <span class="txt1">
+                        Already Registered?
+                        <a href="{% url 'users:login' %}" class="txt2">Login</a>
+                        
+                    </span>
+                    
+                    
+                </li>
+            </ul>
+        
+          </div>
+      </div>
+</div>
+
+
+{% endblock %}

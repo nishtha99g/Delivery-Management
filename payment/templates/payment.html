@@ -1,0 +1,29 @@
+{% extends "shop/base.html" %}
+{% load widget_tweaks %}
+{% block title %}
+  Payment
+{% endblock %}
+
+{% block content %}
+<div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0"><a href="/">Home</a><span class="mx-2 mb-0">/</span> <strong class="text-black">Payment</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <span class="icon-check_circle display-3 text-success"></span>
+              <h2 class="display-3 text-black">Make Payment</h2>
+              <a href="{% url 'warehouse:searchproducts' %}" ><button class="btn btn-primary btn-lg py-3 btn-block" >Investigate order</button></a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  
+{% endblock %}

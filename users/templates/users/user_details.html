@@ -1,0 +1,40 @@
+
+
+
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+  The Shoppee | Successfull
+{% endblock %}
+
+{% block content %}
+
+<div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            
+            <h2 class="display-5 text-black mb-3">Profile Details</h2>
+            <span class="login100-form-avatar">
+                    <img src="{% static "images/men.jpg" %}" alt="AVATAR">
+            </span>
+            <p class="lead mb-1 mt-4">Name: {{ user.first_name }} {{ user.last_name }}</p>
+            <p class="lead mb-1">Address: {{ user.profile.address }}</p>
+            <p class="lead mb-1">City: {{ user.profile.city }}</p>
+            <p class="lead mb-1">PostCode: {{ user.profile.postcode }} </p>
+            <p class="lead mb-3">DOB: {{ user.profile.date_birth }}</p>
+            <p>
+                
+                        <form action="{% url 'users:change_password'%}">
+                            <input type="submit" value="Change Password" class="btn btn-sm btn-primary"/>
+
+                        </form>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+        
+  
+{% endblock %}

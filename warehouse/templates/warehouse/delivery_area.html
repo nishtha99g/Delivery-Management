@@ -1,0 +1,43 @@
+{% extends "shop/base.html" %}
+{% block content %}
+
+<div class="row mb-5">
+              <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">Your Orders are Coming from</h2>
+                <div class="p-3 p-lg-5 border">
+                  <table class="table site-block-order-table mb-5">
+
+                    <tbody>
+                     {% for key, value in waredis.items %}
+                      <tr>
+                        <td>{{key}} from {{value.location}} is <strong class="mx-2">x</strong> {{value.zone}}</td>
+
+                      </tr>
+                      {% endfor %}
+
+                    </tbody>
+
+                  </table>
+
+
+                </div>
+              <a href="{% url 'shop:product_list' %}" ><button  class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button></a>
+              </div>
+      <p>
+        <form action="{% url 'payment:charge' %}" method="post">
+            {% csrf_token %}
+
+            <script src="https://checkout.stripe.com/checkout.js"  class="stripe-button"
+                    data-key="{{ key }}"
+                    data-description="The Shoppee"
+                    data-amount=Rs. {{ cart.get_total_price }}
+                    data-locale="auto"></script>
+          </form>
+      </p>
+            </div>
+
+
+{% endblock %}
+
+
+

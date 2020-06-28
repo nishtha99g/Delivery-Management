@@ -1,0 +1,61 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+  The Shoppee | My orders
+{% endblock %}
+
+{% block content %}
+
+  <div class="bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-0"><a href="/">Home</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">My Orders</strong></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="site-section">
+      <div class="container">
+            <h3 class="display-5 text-black mb-3 text-center">Purchase History</h3>
+        <div class="row mb-5 justify-content-center">
+        
+            <div class="site-blocks-table">
+              <table class="table table-bordered" >
+                <thead>
+                  <tr>
+                  
+                    <th class="product-name">Product</th>
+                    <th class="product-price">Price</th>
+                    <th class="product-quantity">Quantity</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                {% for j in user_order %}
+                    {% if j.user == user %}
+                      {%  for i in item_order %}
+                      <tr>
+                          {% if i.order_id == j.id %}   
+                          <td class="product-name">
+                            <h2 class="h5 text-black">{{ i.product }}</h2>
+                          </td>
+                          <td>Rs. {{ i.price }}</td>
+                          <td>{{ i.quantity }}</td>
+                          {% endif %}
+                        </tr>
+                      {% endfor %}
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          
+        </div>
+    </div>
+      
+  
+{% endblock %}
