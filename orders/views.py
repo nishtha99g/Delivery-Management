@@ -4,6 +4,7 @@ from django.urls import reverse
 from .models import OrderItem
 from .forms import Order, OrderCreateForm
 from cart.cart import Cart
+import math
 #from .tasks import order_created
 
 
@@ -16,12 +17,14 @@ def order_create(request):
         if form.is_valid():
             order = form.save(commit=False)
             order.user = current_user_object
+            order.total_price = math.ceil(cart.get_total_price())
             order = form.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
                                         product=item['product'],
                                         price=item['price'],
                                         quantity=item['quantity'])
+            
             cart.clear()
             #launch asynchronous task
             #order_created.delay(order.id)

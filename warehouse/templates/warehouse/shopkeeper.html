@@ -1,0 +1,24 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<div class="container">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for itm in items %}
+  {% with uorder=itm.product %}
+    <tr>
+      <td>{{ uorder.name}}</td>
+      <td>{{ itm.quantity}}</td>
+    </tr>
+{% endwith %}
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

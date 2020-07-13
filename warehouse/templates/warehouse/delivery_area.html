@@ -1,43 +1,65 @@
 {% extends "shop/base.html" %}
 {% block content %}
-
-<div class="row mb-5">
-              <div class="col-md-12">
-                <h2 class="h3 mb-3 text-black">Your Orders are Coming from</h2>
-                <div class="p-3 p-lg-5 border">
-                  <table class="table site-block-order-table mb-5">
-
+<div class="container">
+   <div class="row mb-5">
+          <div class="col-md-12">
+              <div class="p-3 p-lg-5 border">
+               
+                <table class="table site-block-order-table mb-5">
+                    <thead>
+                      <tr>
+                        <th class="product-name">Product</th>
+                        <th class="product-price">Warehouse</th>
+                        <th class="product-quantity">Zone</th>
+                        {% comment %} <th class="product-total">Total</th> {% endcomment %}                  
+                      </tr>
+                    </thead>
                     <tbody>
                      {% for key, value in waredis.items %}
                       <tr>
-                        <td>{{key}} from {{value.location}} is <strong class="mx-2">x</strong> {{value.zone}}</td>
-
+                        <td class="product-name"> <h3 class="h5 text-black">{{ key}}</h3></td>
+                        <td> <h3 class="h5 text-black">
+                          {% if value %}
+                          {{ value.location }}
+                        {% else %}
+                      Sorry this item is currently unavailable
+                      {% endif %}</h3>
+                        </td>
+                        <td> <h3 class="h5 text-black">{{ value.zone }}</h3></td>
                       </tr>
                       {% endfor %}
-
                     </tbody>
-
-                  </table>
-
-
-                </div>
+                </table>
+                {% if extra %}
+                 <p>You will have to pay extra charge of Rs 50 for delivery according to your time</p>
+                 <p>Your total money is {{ user_order.total_price }}+50 = {{user_order.total_price|add:"50"}}</p>
+              {% else %}
+                You don't need to pay extra
+              {% endif %}
+              
+        </div>
+        
+         <div class="container">
+            <div class="row">
+          <div class="col-6">
               <a href="{% url 'shop:product_list' %}" ><button  class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button></a>
-              </div>
-      <p>
-        <form action="{% url 'payment:charge' %}" method="post">
-            {% csrf_token %}
+          </div>
+           <div class="col-6">
+             <p>
+              <form action="{% url 'payment:charge' %}" method="post">
+                  {% csrf_token %}
 
-            <script src="https://checkout.stripe.com/checkout.js"  class="stripe-button"
-                    data-key="{{ key }}"
-                    data-description="The Shoppee"
-                    data-amount=Rs. {{ cart.get_total_price }}
-                    data-locale="auto"></script>
-          </form>
-      </p>
-            </div>
-
+                  <script src="https://checkout.stripe.com/checkout.js"  class="stripe-button"
+                          data-key="{{ key }}"
+                          data-description="The Shoppee"
+                          data-amount=Rs. {{ cart.get_total_price }}
+                          data-locale="auto"></script>
+                </form>
+             </p>
+         </div>
+        </div>
+         </div>
+        </div>
+      </div>
 
 {% endblock %}
-
-
-

@@ -14,7 +14,7 @@ class Profile(models.Model):
     postcode = models.CharField(max_length=30)
     date_birth = models.DateField(default=datetime.date.today, blank=True)
     shopkeeper = models.BooleanField(default=False)
-    warehouse=models.ForeignKey(Warehouse,on_delete=models.CASCADE,null=True)
+    warehouse=models.ForeignKey(Warehouse,related_name='warehouse',on_delete=models.CASCADE,null=True)
 
 
 @receiver(post_save, sender=User)

@@ -63,7 +63,7 @@ def login_view(request):
             if 'next' in request.POST:
                 return redirect(request.POST.get('next'))
             if user.profile.shopkeeper:
-                return render(request,'abc.html')
+                return redirect('warehouse:shopkeeper_view')
             return redirect('/')
         else:
             # messages.error(request, 'Username or Password not correct')

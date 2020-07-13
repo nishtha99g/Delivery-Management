@@ -9,6 +9,5 @@ class KeyValInline(admin.TabularInline):
 
 @admin.register(Warehouse)
 class WarehouseAdmin(admin.ModelAdmin):
-    list_display = ['location', 'loc_x', 'loc_y', 'zone', 'time_slot']
-    # list_filter = ['location']
+    list_display = ['id','location', 'loc_x', 'loc_y', 'zone', 'time_slot']
     inlines = [KeyValInline]

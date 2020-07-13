@@ -46,8 +46,9 @@ class Warehouse(models.Model):
     zone = models.CharField(max_length=30, choices=ZONE_CHOICES, null=True)
     loc_x = models.DecimalField(max_digits=10, decimal_places=6)
     loc_y = models.DecimalField(max_digits=10, decimal_places=6)
-    time_slot = models.CharField(
-        max_length=100, choices=SLOT_CHOICES, null=False, default='Noon {12 pm - 7 pm}')
+    time_slot = models.CharField(max_length=100, choices=SLOT_CHOICES, null=False, default='Noon {12 pm - 7 pm}')
+    delivery_boy=models.CharField(max_length=50,null=True)
+    contact=models.CharField(max_length=10,null=True)
 
 
 class KeyVal(models.Model):
