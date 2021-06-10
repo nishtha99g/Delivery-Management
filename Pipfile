@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "==2.0.5"
+django = "==2.2.24"
 gunicorn = "*"
 whitenoise = "*"
 braintree = "==3.53.0"
