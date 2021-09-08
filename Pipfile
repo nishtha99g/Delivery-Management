@@ -10,7 +10,7 @@ django = "==2.0.5"
 gunicorn = "*"
 whitenoise = "*"
 braintree = "==3.53.0"
-pillow= "==5.1.0"
+pillow= "==8.3.2"
 stripe = "*"
 django-widget-tweaks = "==1.4.3"
 [requires]
